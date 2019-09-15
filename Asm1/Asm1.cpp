@@ -68,10 +68,10 @@ int main()
 
 	{
 		unsigned int x = 0x12345678;
-		//for printf("%hx\n",(short) *((&x)+1));//
-		//compiler says that x unitialized;
-		printf("%x\n", x);
-		printf("%hx\n",x);// 5678, Little Endian
+		printf("x :%x\n", x);
+		printf("(short *)x[0] %hx\n",x);// 5678, Little Endian
+		short* x_next = (short*)(((char*)& x) + 2);
+		printf("(short *)x[2] %hx\n", *x_next);// 1234, Little Endian
 	}
 
 	{
@@ -79,11 +79,11 @@ int main()
 		const char *ru_str = "рсту";
 		for (size_t i = 0; i < 4; i++)
 		{
-			printf("%u, %c\n", i, str[i]);
+			printf("%lu, %c\n", i, str[i]);
 		}
 		for (size_t i = 0; i < 4; i++)
 		{
-			printf("%u, %c\n", i, ru_str[i]);
+			printf("%lu, %c\n", i, ru_str[i]);
 		}
 	}
 
@@ -92,11 +92,11 @@ int main()
 		const wchar_t *ru_str = L"рсту";
 		for (size_t i = 0; i < 4; i++)
 		{
-			wprintf(L"%u, %c\n", i, str[i]);
+			wprintf(L"%lu, %c\n", i, str[i]);
 		}
 		for (size_t i = 0; i < 4; i++)
 		{
-			wprintf(L"%u, %c\n", i, ru_str[i]);
+			wprintf(L"%lu, %c\n", i, ru_str[i]);
 		}
 	}
 	PRINT_SIZE_OF(char);
